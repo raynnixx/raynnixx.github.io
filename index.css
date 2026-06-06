@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+:root {
+  --primary: 234 179 8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom styles for the educational gaming site */
+.section-title {
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(to right, #a78bfa, #6366f1);
+  border-radius: 3px;
+}
+
+.card {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+              box-shadow 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+.nav-link {
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.nav-link:after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background: linear-gradient(to right, #a78bfa, #6366f1);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover:after {
+  width: 100%;
+}
+
+.timeline-item {
+  position: relative;
+}
+
+.timeline-item:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 40px;
+  bottom: -20px;
+  width: 2px;
+  background: #4b5563;
+}
+
+.stat-card {
+  background: linear-gradient(145deg, #18181b, #27272a);
+}
+
+.chart-container {
+  background: #18181b;
+  border-radius: 12px;
+}
+
+.recommendation-item {
+  transition: all 0.2s ease;
+}
+
+.recommendation-item.completed {
+  opacity: 0.75;
+}
+
+.quiz-option {
+  transition: all 0.15s ease;
+}
+
+.quiz-option:hover {
+  border-color: #6366f1;
+  background-color: #27272a;
+}
+
+.quiz-option.selected {
+  border-color: #a78bfa;
+  background-color: #312e81;
+  color: white;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #18181b;
+}
+::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
