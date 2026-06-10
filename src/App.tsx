@@ -495,8 +495,11 @@ const loadSurveyResponses = async () => {
   };
 
   // Interactive: Add user survey response
-  const submitUserSurvey = async () => {
+const submitUserSurvey = async () => {
+  console.log("Функция вызвана");
+
   if (!userSurvey.freq || !userSurvey.sleep || !userSurvey.negative) {
+    console.log("Поля не заполнены");
     alert('Пожалуйста, ответьте на все вопросы анкеты');
     return;
   }
@@ -504,20 +507,25 @@ const loadSurveyResponses = async () => {
   try {
     const newResponse = {
       freq: userSurvey.freq,
+      benefits: userSurvey.benefits ?? [],
       sleep: userSurvey.sleep,
       negative: userSurvey.negative,
       createdAt: new Date()
     };
 
+    console.log("Отправляем в Firebase:", newResponse);
+
     await addDoc(collection(db, "surveyResponses"), newResponse);
+
+    console.log("УСПЕШНО СОХРАНЕНО ✅");
 
     alert("Ответ успешно сохранён ✅");
 
-    // если нужно очистить форму:
     setUserSurvey({
-      freq: "",
-      sleep: "",
-      negative: ""
+      freq: '',
+      benefits: [],
+      sleep: '',
+      negative: ''
     });
 
   } catch (error) {
@@ -525,14 +533,6 @@ const loadSurveyResponses = async () => {
     alert("Ошибка при сохранении ❌");
   }
 };
-
-
-    // Show success message
-    setTimeout(() => {
-      alert('Спасибо! Ваш ответ добавлен в общую статистику.');
-    }, 300);
-  };
-
   const resetSurvey = () => {
     saveSurveyResponses([]);
     setHasAddedSurvey(false);
