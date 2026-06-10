@@ -526,22 +526,6 @@ const loadSurveyResponses = async () => {
   }
 };
 
-    const nextResponse: SurveyResponse = {
-      id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
-      createdAt: new Date().toISOString(),
-      ...userSurvey,
-    };
-
-    await addDoc(
-  collection(db, "surveyResponses"),
-  nextResponse
-);
-
-loadSurveyResponses();
-
-    setHasAddedSurvey(true);
-    // Reset form
-    setUserSurvey({ freq: '', benefits: [], sleep: '', negative: '' });
 
     // Show success message
     setTimeout(() => {
