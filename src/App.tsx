@@ -496,10 +496,35 @@ const loadSurveyResponses = async () => {
 
   // Interactive: Add user survey response
   const submitUserSurvey = async () => {
-    if (!userSurvey.freq || !userSurvey.sleep || !userSurvey.negative) {
-      alert('Пожалуйста, ответьте на все вопросы анкеты');
-      return;
-    }
+  if (!userSurvey.freq || !userSurvey.sleep || !userSurvey.negative) {
+    alert('Пожалуйста, ответьте на все вопросы анкеты');
+    return;
+  }
+
+  try {
+    const newResponse = {
+      freq: userSurvey.freq,
+      sleep: userSurvey.sleep,
+      negative: userSurvey.negative,
+      createdAt: new Date()
+    };
+
+    await addDoc(collection(db, "surveyResponses"), newResponse);
+
+    alert("Ответ успешно сохранён ✅");
+
+    // если нужно очистить форму:
+    setUserSurvey({
+      freq: "",
+      sleep: "",
+      negative: ""
+    });
+
+  } catch (error) {
+    console.error("Ошибка при сохранении:", error);
+    alert("Ошибка при сохранении ❌");
+  }
+};
 
     const nextResponse: SurveyResponse = {
       id: `${Date.now()}-${Math.random().toString(16).slice(2)}`,
