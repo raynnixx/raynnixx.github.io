@@ -470,7 +470,6 @@ const loadSurveyResponses = async () => {
 
   const saveSurveyResponses = (responses: SurveyResponse[]) => {
     setSurveyResponses(responses);
-    localStorage.setItem(SURVEY_STORAGE_KEY, JSON.stringify(responses));
     applySurveyResponses(responses);
   };
 
